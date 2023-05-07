@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cyansilver/go-lib/auth/token"
+	"github.com/cyansilver/go-libs/auth/token"
 )
 
 func TestAuthCaching(t *testing.T) {

@@ -6,7 +6,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 
-	"github.com/cyansilver/go-lib/config"
+	"github.com/cyansilver/go-libs/config"
 )
 
 // InitDB base on the config

@@ -10,7 +10,7 @@ import (
 	"firebase.google.com/go/auth"
 	"google.golang.org/api/option"
 
-	"github.com/cyansilver/go-lib/auth/token"
+	"github.com/cyansilver/go-libs/auth/token"
 )
 
 // AuthFirebase wraps firebase function

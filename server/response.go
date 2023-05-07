@@ -1,7 +1,7 @@
 package server
 
 import (
-	errp "github.com/cyansilver/go-lib/err"
+	errp "github.com/cyansilver/go-libs/err"
 )
 
 // Result presents the http response

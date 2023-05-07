@@ -1,9 +1,8 @@
 package db
 
 import (
+	"github.com/cyansilver/go-libs/config"
 	"github.com/go-redis/redis"
-
-	"github.com/cyansilver/go-lib/config"
 )
 
 func InitRedisClient(cf *config.AppConfig) *redis.Client {

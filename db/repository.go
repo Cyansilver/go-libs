@@ -8,8 +8,8 @@ import (
 
 	"gorm.io/gorm"
 
-	errs "github.com/cyansilver/go-lib/err"
-	"github.com/cyansilver/go-lib/log"
+	errs "github.com/cyansilver/go-libs/err"
+	"github.com/cyansilver/go-libs/log"
 )
 
 var (

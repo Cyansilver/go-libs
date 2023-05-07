@@ -3,8 +3,8 @@ package mq
 import (
 	"github.com/go-redis/redis"
 
-	"github.com/cyansilver/go-lib/config"
-	"github.com/cyansilver/go-lib/db"
+	"github.com/cyansilver/go-libs/config"
+	"github.com/cyansilver/go-libs/db"
 )
 
 // Producer wrapper the redis.Client

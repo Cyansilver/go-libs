@@ -12,8 +12,8 @@ import (
 	"syscall"
 	"time"
 
-	errp "github.com/cyansilver/go-lib/err"
-	log "github.com/cyansilver/go-lib/log"
+	errp "github.com/cyansilver/go-libs/err"
+	log "github.com/cyansilver/go-libs/log"
 )
 
 type HTTPApiServerItc interface {

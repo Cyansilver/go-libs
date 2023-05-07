@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/cyansilver/go-lib/auth/token"
+	"github.com/cyansilver/go-libs/auth/token"
 )
 
 func TestHandleBearerAuth(t *testing.T) {

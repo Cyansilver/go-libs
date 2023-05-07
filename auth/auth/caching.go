@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/cyansilver/go-lib/auth/token"
+	"github.com/cyansilver/go-libs/auth/token"
 )
 
 type AuthCaching struct {
