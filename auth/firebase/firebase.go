@@ -81,6 +81,7 @@ func (af *AuthFirebase) VerifyToken(idToken string) (*token.SessionTokenClaims, 
 			"name":        userInfo["name"],
 			"createdAt":   userInfo["createdAt"],
 			"lastLogInTS": userInfo["lastLogInTS"],
+			"avatarURL":   userInfo["avatarURL"],
 		},
 		IsVerified: true,
 	}
@@ -99,6 +100,7 @@ func (af *AuthFirebase) GetUser(userID string) (map[string]string, error) {
 		"email":       user.Email,
 		"name":        user.DisplayName,
 		"createdAt":   fmt.Sprintf("%d", user.UserMetadata.CreationTimestamp),
+		"avatarURL":   user.PhotoURL,
 		"lastLogInTS": fmt.Sprintf("%d", user.UserMetadata.LastLogInTimestamp),
 	}, nil
 }
