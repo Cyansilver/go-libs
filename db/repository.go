@@ -129,14 +129,27 @@ func (r *Repository[T]) Find(criteria map[string]interface{}) ([]T, error) {
 	if perPageOk == true {
 		delete(criteria, "per_page")
 	}
-	lastId, ok := criteria["last_id"]
-	if ok == true {
-		criteria["id.<"] = lastId
-		delete(criteria, "last_id")
+
+	page, pageOk := criteria["page"]
+	if pageOk == true {
+		delete(criteria, "page")
 	}
+
 	sort, sortOk := criteria["sort"]
 	if sortOk == true {
 		delete(criteria, "sort")
+	} else {
+		sort = "id desc"
+	}
+
+	lastId, ok := criteria["last_id"]
+	if ok == true {
+		if sort == "id desc" {
+			criteria["id.<"] = lastId
+		} else {
+			criteria["id.>"] = lastId
+		}
+		delete(criteria, "last_id")
 	}
 
 	whereClause, newCriteria := r.GetCondition(criteria, "AND")
@@ -149,11 +162,13 @@ func (r *Repository[T]) Find(criteria map[string]interface{}) ([]T, error) {
 		intPerPage, _ := strconv.Atoi(perPage.(string))
 		q = q.Limit(intPerPage)
 	}
-	if sortOk == true {
-		q = q.Order(sort)
-	} else {
-		q = q.Order("id desc")
+	if pageOk == true {
+		pageSize, _ := strconv.Atoi(perPage.(string))
+		page, _ := strconv.Atoi(page.(string))
+		offset := (page - 1) * pageSize
+		q = q.Offset(offset)
 	}
+	q = q.Order(sort)
 
 	tx := q.Find(&m)
 
@@ -166,12 +181,13 @@ func (r *Repository[T]) Find(criteria map[string]interface{}) ([]T, error) {
 func (r *Repository[T]) Count(criteria map[string]interface{}) (int64, error) {
 	var count int64
 	var m T
-	_, perPageOk := criteria["per_page"]
-	if perPageOk == true {
+	if _, ok := criteria["per_page"]; ok {
 		delete(criteria, "per_page")
 	}
-	_, ok := criteria["last_id"]
-	if ok == true {
+	if _, ok := criteria["page"]; ok {
+		delete(criteria, "page")
+	}
+	if _, ok := criteria["last_id"]; ok {
 		delete(criteria, "last_id")
 	}
 	whereClause, newCriteria := r.GetCondition(criteria, "AND")
